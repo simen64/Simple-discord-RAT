@@ -1,6 +1,9 @@
 # Simple-discord-RAT
 A simple remote shell through Discord written in Python
 
+## maintenance
+I will not be maintaining this project any further, it was a proof of concept. And the developing process was not really fun at all. Imo the supprocess library in python kinda sucks and i should have written this in something else.
+
 ## Dependencies
 - Python with required libraries (see Getting started)
 - Linux or Windows (This was originally made for linux, but i have tried getting functionality over to Windows so expect some bugs)
