@@ -1,6 +1,10 @@
 # Simple-discord-RAT
 A simple remote shell through Discord written in Python
 
+## Dependencies
+- Python with required libraries (see Getting started)
+- Linux or Windows (This was originally made for linux, but i have tried getting functionality over to Windows so expect some bugs)
+
 ## Getting started
 
 To get started with this RAT, you'll need to follow these steps:
