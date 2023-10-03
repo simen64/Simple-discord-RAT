@@ -160,6 +160,8 @@ async def on_message(message):
 
                     out = shell(command)
                     print(out)
+                    if len(out) == 0:
+                        out = "Empty"
                     await message.channel.send(out)
 
             else:
