@@ -34,6 +34,7 @@ To get started with this RAT, you'll need to follow these steps:
 - Commands should be prefixed with `!`. For example, `!help` will display the help screen.
 - You can execute shell commands by sending a message with a `!` prefix (e.g., `!ls`).
 - Use `!upload` to upload a file to the target machine and `!download` to download a file from the target machine.
+- You can use `cd (path)` to go to a directory, this is OS independent and is the only way of switchind directories. You can also use `cd ..`
 
 ## Security
 - **Keep your `.env` file secure:** Ensure that your `.env` file containing the Discord bot token is not exposed or shared publicly.
