@@ -19,6 +19,7 @@ try:
         token = sys.argv[2]
         print(token)
     else:
+        print("Not executed with HID payload")
         load_dotenv()
 
         token = os.getenv("DISCORD_TOKEN")
