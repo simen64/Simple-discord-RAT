@@ -5,7 +5,7 @@ A simple remote shell through Discord written in Python
 I will not be maintaining this project any further, it was a proof of concept. And the developing process was not really fun at all.
 
 ## Dependencies
-- Python with required libraries (see Getting started)
+- Python 3 or higher  with required libraries (see Getting started)
 - Linux or Windows (This was originally made for linux, but i have tried getting functionality over to Windows so expect some bugs)
 
 ## Getting started
